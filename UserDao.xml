@@ -21,7 +21,19 @@
 	</select>
 	
 	<select id="queryByUserName">
-		
+		select 
+      user_id, password,nick_name, age, email, md5, validated, privilege_lvl, lvl, head_img, sign_up_time
+    from 
+      users 
+    where user_name = #{userName}
+	</select>
+	
+	<select id="queryByEmail">
+		select 
+      user_id, user_name, password,nick_name, age, md5, validated, privilege_lvl, lvl, head_img, sign_up_time
+    from 
+      users 
+    where email = #{email}
 	</select>
 	
   <select id="queryById" resultType="User" parameterType="long">
@@ -57,9 +69,7 @@
       user_name = #{userName},
       nick_name = #{nickName},
       age = #{age},
-      lvl = #{lvl},
       head_img = #{headImg},
-      sign_up_time = #{signUpTime}
     where user_id = #{userId}
   </update>
 	
