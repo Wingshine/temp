@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.ws.ctf.dao.UserDao">
+	<!-- 目的:为DAO接口方法提供sql语句配置 -->
+	
+  <insert id="signUp" parameterType="User">
+    insert into users (user_id, user_name, nick_name, age, email, md5, validated, privilege_lvl, lvl, head_img, sign_up_time)
+    values (#{userId}, #{userName}, #{nickName}, #{age}, #{email}, #{md5}, #{validated}, #{privilegeLvl}, #{lvl}, #{headImg}, #{signUpTime})
+  </insert>
+  
+  <select id="queryById" resultType="User" parameterType="long">
+    select user_name, nick_name, age, email, md5, validated, privilege_lvl, lvl, head_img, sign_up_time
+    from users 
+    where user_id = #{userId}
+  </select>
+  
+  <update id="updateUserInfo" parameterType="User">
+    update 
+      users 
+    set 
+      user_name = #{userName},
+      nick_name = #{nickName},
+      age = #{age},
+      email = #{email},
+      md5 = #{md5},
+      validated = #{validated},
+      privilege_lvl = #{privilegeLvl},
+      lvl = #{lvl},
+      head_img = #{headImg},
+      sign_up_time = #{signUpTime}
+    where seckill_id = #{userId}
+  </update>
+	
+	
+	<select id="queryAll" resultType="User">
+		select user_name, nick_name, age, email, md5, validated, privilege_lvl, lvl, head_img, sign_up_time
+    from users 
+		order by privilege_lvl desc
+		limit #{offset},#{limit}
+	</select>
+	
+
+</mapper> 
