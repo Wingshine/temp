@@ -20,6 +20,10 @@
 		select count (*) from users where nick_name = #{nickName}
 	</select>
 	
+	<select id="queryCountByEmail">
+		select count (*) from users where email = #{email}
+	</select>
+	
 	<select id="queryByUserName">
 		select 
       user_id, password,nick_name, age, email, md5, validated, privilege_lvl, lvl, head_img, sign_up_time
