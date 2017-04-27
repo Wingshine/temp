@@ -33,7 +33,6 @@
     where seckill_id = #{userId}
   </update>
 	
-	
 	<select id="queryAll" resultType="User">
 		select user_name, nick_name, age, email, md5, validated, privilege_lvl, lvl, head_img, sign_up_time
     from users 
