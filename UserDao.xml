@@ -6,13 +6,17 @@
 	<!-- 目的:为DAO接口方法提供sql语句配置 -->
 	
   <insert id="signUp" parameterType="User">
-    insert into users (user_id, user_name, nick_name, age, email, md5, validated, privilege_lvl, lvl, head_img, sign_up_time)
-    values (#{userId}, #{userName}, #{nickName}, #{age}, #{email}, #{md5}, #{validated}, #{privilegeLvl}, #{lvl}, #{headImg}, #{signUpTime})
+    insert into 
+      users (user_id, user_name, nick_name, age, email, md5, validated, privilege_lvl, lvl, head_img, sign_up_time)
+    values 
+      (#{userId}, #{userName}, #{nickName}, #{age}, #{email}, #{md5}, #{validated}, #{privilegeLvl}, #{lvl}, #{headImg}, #{signUpTime})
   </insert>
   
   <select id="queryById" resultType="User" parameterType="long">
-    select user_name, nick_name, age, email, md5, validated, privilege_lvl, lvl, head_img, sign_up_time
-    from users 
+    select 
+      user_name, nick_name, age, email, md5, validated, privilege_lvl, lvl, head_img, sign_up_time
+    from 
+      users 
     where user_id = #{userId}
   </select>
   
@@ -32,11 +36,12 @@
       sign_up_time = #{signUpTime}
     where seckill_id = #{userId}
   </update>
-	<select id="queryAll" resultType="User">
-		select user_name, nick_name, age, email, md5, validated, privilege_lvl, lvl, head_img, sign_up_time
-    from users 
-		order by privilege_lvl desc
-		limit #{offset},#{limit}
+  <select id="queryAll" resultType="User">
+    select 
+      user_name, nick_name, age, email, md5, validated, privilege_lvl, lvl, head_img, sign_up_time
+    from 
+      users 
+    order by privilege_lvl desc limit #{offset},#{limit}
 	</select>
 	
 
