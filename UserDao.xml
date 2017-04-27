@@ -42,7 +42,7 @@
     from 
       users 
     order by privilege_lvl desc limit #{offset},#{limit}
-	</select>
+  </select>
 	
 
 </mapper> 
