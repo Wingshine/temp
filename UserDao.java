@@ -123,4 +123,20 @@ public class UserDaoTest {
 			System.out.println(user);
 		}
 	}
+	
+	@Test
+	public void testUpdateEmail() throws Exception{
+		User user = new User();
+		user.setUserId(10000002);
+		user.setEmail("jssjh2017@gmail.com");
+		user.setValidated(1);	
+		user.setMd5("dasfas454yyy");	
+		
+	}
+	
+	@Test
+	public void testValidateEmail(){
+		int resultcount = userDao.validateEmail("dasfas454yyy");
+		System.out.println("resultcount="+resultcount);
+	}
 }
