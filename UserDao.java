@@ -96,4 +96,14 @@ public class UserDaoTest {
 		int resultcount = userDao.updateUserInfoAdmin(user);
 		System.out.println("resultcount="+resultcount);
 	}
+	
+	@Test
+	public void testUpdateUserInfoUser() throws Exception{
+		User user = new User();
+		user.setUserId(10000002);
+		user.setUserName("shadow");
+		user.setNickName("shadowmin");
+		user.setAge(22);
+		user.setHeadImg("005.png");
+	}
 }
