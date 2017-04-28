@@ -105,5 +105,22 @@ public class UserDaoTest {
 		user.setNickName("shadowmin");
 		user.setAge(22);
 		user.setHeadImg("005.png");
+		System.out.println(user);
+		int resultcount = userDao.updateUserInfoUser(user);
+		System.out.println("resultcount="+resultcount);
+	}
+	
+	@Test
+	public void testQueryAllCount() throws Exception{
+		int resultcount = userDao.queryAllCount(user);
+		System.out.println("resultcount="+resultcount);
+	}
+	
+	@Test
+	public void testQueryAll() throws Exception{
+		List<User> users = userDao.queryAll(0,2);
+		for(User user : users){
+			System.out.println(user);
+		}
 	}
 }
