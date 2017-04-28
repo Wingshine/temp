@@ -140,20 +140,12 @@
 		where md5 = #{md5}
 	</update>
 	
-	<update id="addExperience">
-		update
-		user
-		set
-		experience = experience + #{experience}
-		where user_id = #{user_id}
-	</update>
-	
 	<update id="upgrade">
 		update
 		user
 		set
-		lvl = lvl + 1,
-		experience = experience + #{experience} - 100
+		lvl = #{lvl},
+		experience =  #{experience}
 		where user_id = #{user_id}
 	</update>
 </mapper> 
