@@ -88,6 +88,7 @@ public class UserDaoTest {
 		user.setMd5("dasfas4544545f");
 		user.setPrivilegeLvl(3);
 		user.setLvl(47);
+		user.setExperience(80);
 		user.setHeadImg("005.png");
 		DateFormat dateFormat2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date time = dateFormat2.parse("2010-09-13 22:36:01");
@@ -131,12 +132,18 @@ public class UserDaoTest {
 		user.setEmail("jssjh2017@gmail.com");
 		user.setValidated(1);	
 		user.setMd5("dasfas454yyy");	
-		
 	}
 	
 	@Test
 	public void testValidateEmail(){
 		int resultcount = userDao.validateEmail("dasfas454yyy");
 		System.out.println("resultcount="+resultcount);
+	} 
+	
+	@Test
+	public void testAddExperience(){
+		int resultcount = userDao.addExperience("admin", 9999);
+		System.out.println("resultcount="+resultcount);
 	}
+	
 }
