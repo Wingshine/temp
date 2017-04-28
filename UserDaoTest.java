@@ -141,8 +141,8 @@ public class UserDaoTest {
 	} 
 	
 	@Test
-	public void testAddExperience(){
-		int resultcount = userDao.addExperience("admin", 9999);
+	public void testUpgrade(){
+		int resultcount = userDao.addExperience("admin", 99, 9999);
 		System.out.println("resultcount="+resultcount);
 	}
 	
