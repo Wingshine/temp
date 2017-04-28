@@ -126,7 +126,7 @@
 
 	<update id="validateEmail">
 		update
-		user
+		users
 		set
 		validated = 1
 		where md5 = #{md5}
@@ -134,7 +134,7 @@
 	
 	<update id="updatePassword">
 		update 
-		user
+		users
 		set
 		password = #{password}
 		where md5 = #{md5}
@@ -142,7 +142,7 @@
 	
 	<update id="upgrade">
 		update
-		user
+		users
 		set
 		lvl = #{lvl},
 		experience =  #{experience}
