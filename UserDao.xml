@@ -32,33 +32,38 @@
 	<select id="queryByUserName" resultType="User">
 		select
 		user_id, password,nick_name, age, email, md5,
-		validated, privilege_lvl, lvl, experience, 
+		validated, privilege_lvl, privilege_lvls.role as role, lvl, lvl_names.name as lvl_name, experience, 
 		head_img, sign_up_time
 		from
 		users
 		where
 		user_name = #{userName}
+		left join privilege_lvls on users.lvl = privilege_lvls.lvl
+		left join lvl_names on lvl = lvl_names.lvl
 	</select>
 
 	<select id="queryByEmail" resultType="User">
 		select
 		user_id, user_name, password,nick_name, age,
-		md5, validated, privilege_lvl,
-		lvl,  experience, head_img, sign_up_time
+		md5, validated, privilege_lvl, privilege_lvls.role as role, lvl, lvl_names.name as lvl_name, experience, head_img, sign_up_time
 		from
 		users
 		where email = #{email}
+		left join privilege_lvls on users.lvl = privilege_lvls.lvl
+		left join lvl_names on lvl = lvl_names.lvl
 	</select>
 
 	<select id="queryById" resultType="User" parameterType="long">
 		select
 		user_name, password,nick_name, age, email, md5, validated,
-		privilege_lvl, lvl, experience, 
+		privilege_lvl, privilege_lvls.role as role, lvl, lvl_names.name as lvl_name, experience, 
 		head_img, sign_up_time
 		from
 		users
 		where user_id =
 		#{userId}
+		left join privilege_lvls on users.lvl = privilege_lvls.lvl
+		left join lvl_names on lvl = lvl_names.lvl
 	</select>
 
 	<update id="updateUserInfoAdmin" parameterType="User">
