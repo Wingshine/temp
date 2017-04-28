@@ -11,7 +11,7 @@
 		(#{postTitle}, #{blockId}, #{posterId})
 	</insert>
 	
-	<select id="queryByBlockId" resultType="Post">
+	<select id="queryAllByBlockId" resultType="Post">
 		select 
 		post_id, post_title, block_id, blocks.block_name as block_name, poster_id, users.user_name as poster_name, poster_time, last_comment_time, comments_count, is_fine, is_top
 		from 
@@ -22,5 +22,37 @@
 		left join users on posts.poster_id = user_id
 	</select>
 	
+	<select id="queryNormalByBlockId" resultType="Post">
+		select 
+		post_id, post_title, block_id, blocks.block_name as block_name, poster_id, users.user_name as poster_name, poster_time, last_comment_time, comments_count, is_fine, is_top
+		from 
+		posts
+		where 
+		block_id = #{blockId} and is_top = 0
+		left join blocks on posts.block_id = blocks.block_id
+		left join users on posts.poster_id = user_id
+	</select>
+	
+	<select id="queryFineByBlockId" resultType="Post">
+		select 
+		post_id, post_title, block_id, blocks.block_name as block_name, poster_id, users.user_name as poster_name, poster_time, last_comment_time, comments_count, is_fine, is_top
+		from 
+		posts
+		where 
+		block_id = #{blockId} and is_fine = 1
+		left join blocks on posts.block_id = blocks.block_id
+		left join users on posts.poster_id = user_id
+	</select>
+	
+	<select id="queryTopByBlockId" resultType="Post">
+		select 
+		post_id, post_title, block_id, blocks.block_name as block_name, poster_id, users.user_name as poster_name, poster_time, last_comment_time, comments_count, is_fine, is_top
+		from 
+		posts
+		where 
+		block_id = #{blockId} and is_Top = 1
+		left join blocks on posts.block_id = blocks.block_id
+		left join users on posts.poster_id = user_id
+	</select>
 	
 </mapper>
