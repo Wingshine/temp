@@ -4,109 +4,138 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.ws.ctf.dao.UserDao">
 	<!-- 目的:为DAO接口方法提供sql语句配置 -->
-	
-  <insert id="addUser" parameterType="User">
-    insert into 
-      users (user_id, user_name, password, nick_name, age, email, md5, validated, privilege_lvl, lvl, head_img, sign_up_time)
-    values 
-      (#{userId}, #{userName}, #{password}, #{nickName}, #{age}, #{email}, #{md5}, #{validated}, #{privilegeLvl}, #{lvl}, #{headImg}, #{signUpTime})
-  </insert>
-  
-	<select id="queryCountByUserName">
-		select count (*) from users where user_name = #{userName}
+
+	<insert id="addUser" parameterType="User">
+		insert ignore into
+		users (user_name,
+		password, nick_name, age, email, md5, head_img)
+		values
+		(#{userName},
+		#{password}, #{nickName}, #{age}, #{email}, #{md5},
+		#{headImg})
+	</insert>
+
+	<select id="queryCountByUserName" resultType="int">
+		select count(*) from users where user_name =
+		#{userName}
 	</select>
-	
-	<select id="queryCountByNickName">
-		select count (*) from users where nick_name = #{nickName}
+
+	<select id="queryCountByNickName" resultType="int">
+		select count(*) from users where nick_name =
+		#{nickName}
 	</select>
-	
-	<select id="queryCountByEmail">
-		select count (*) from users where email = #{email}
+
+	<select id="queryCountByEmail" resultType="int">
+		select count(*) from users where email = #{email}
 	</select>
-	
-	<select id="queryByUserName">
-		select 
-      user_id, password,nick_name, age, email, md5, validated, privilege_lvl, lvl, head_img, sign_up_time
-    from 
-      users 
-    where user_name = #{userName}
+
+	<select id="queryByUserName" resultType="User">
+		select
+		user_id, password,nick_name, age, email, md5,
+		validated, privilege_lvl, lvl,
+		head_img, sign_up_time
+		from
+		users
+		where
+		user_name = #{userName}
 	</select>
-	
-	<select id="queryByEmail">
-		select 
-      user_id, user_name, password,nick_name, age, md5, validated, privilege_lvl, lvl, head_img, sign_up_time
-    from 
-      users 
-    where email = #{email}
+
+	<select id="queryByEmail" resultType="User">
+		select
+		user_id, user_name, password,nick_name, age,
+		md5, validated, privilege_lvl,
+		lvl, head_img, sign_up_time
+		from
+		users
+		where email = #{email}
 	</select>
-	
-  <select id="queryById" resultType="User" parameterType="long">
-    select 
-      user_name, password,nick_name, age, email, md5, validated, privilege_lvl, lvl, head_img, sign_up_time
-    from 
-      users 
-    where user_id = #{userId}
-  </select>
-  
-  <update id="updateUserInfoAdmin" parameterType="User">
-    update 
-      users 
-    set 
-      user_name = #{userName},
-			password = #{password},
-      nick_name = #{nickName},
-      age = #{age},
-      email = #{email},
-      md5 = #{md5},
-      validated = #{validated},
-      privilege_lvl = #{privilegeLvl},
-      lvl = #{lvl},
-      head_img = #{headImg},
-      sign_up_time = #{signUpTime}
-    where user_id = #{userId}
-  </update>
-	
-	<update id="updateUserInfoUser" parameterType="User">
-    update 
-      users 
-    set 
-      user_name = #{userName},
-      nick_name = #{nickName},
-      age = #{age},
-      head_img = #{headImg},
-    where user_id = #{userId}
-  </update>
-	
-	<select id="queryAllCount">
-		select 
-			count(*) 
-		from 
-			users
+
+	<select id="queryById" resultType="User" parameterType="long">
+		select
+		user_name, password,nick_name, age, email, md5, validated,
+		privilege_lvl, lvl,
+		head_img, sign_up_time
+		from
+		users
+		where user_id =
+		#{userId}
 	</select>
-	
-  <select id="queryAll" resultType="User">
-    select 
-      user_name, nick_name, age, email, md5, validated, privilege_lvl, lvl, head_img, sign_up_time
-    from 
-      users 
-    order by privilege_lvl desc limit #{offset},#{limit}
-  </select>
-	
-	<update id="updateEmail" parameterType="User">
+
+	<update id="updateUserInfoAdmin" parameterType="User">
 		update
-			users
+		users
 		set
-			email = #{email},
-      md5 = #{md5},
-      validated = #{validated},
+		user_name = #{userName},
+		password = #{password},
+		nick_name =
+		#{nickName},
+		age = #{age},
+		email = #{email},
+		md5 = #{md5},
+		validated =
+		#{validated},
+		privilege_lvl = #{privilegeLvl},
+		lvl = #{lvl},
+		head_img =
+		#{headImg},
+		sign_up_time = #{signUpTime}
 		where user_id = #{userId}
 	</update>
-	
+
+	<update id="updateUserInfoUser" parameterType="User">
+		update
+		users
+		set
+		user_name = #{userName},
+		nick_name = #{nickName},
+		age = #{age},
+		head_img
+		= #{headImg},
+		where user_id = #{userId}
+	</update>
+
+	<select id="queryAllCount" resultType="int">
+		select
+		count(*)
+		from
+		users
+	</select>
+
+	<select id="queryAll" resultType="User">
+		select
+		user_name, nick_name,
+		age, email, md5, validated, privilege_lvl, lvl, head_img,
+		sign_up_time
+		from
+		users
+		order by privilege_lvl desc limit #{offset},#{limit}
+	</select>
+
+	<update id="updateEmail" parameterType="User">
+		update
+		users
+		set
+		email =
+		#{email},
+		md5 = #{md5},
+		validated = #{validated},
+		where user_id =
+		#{userId}
+	</update>
+
 	<update id="validateEmail">
 		update
-			user
+		user
 		set
-		  validated = 1,
+		validated = 1,
+		where md5 = #{md5}
+	</update >
+	
+	<update id="updatePassword">
+		update 
+		user
+		set
+		password = #{password}
 		where md5 = #{md5}
 	</update>
 </mapper> 
