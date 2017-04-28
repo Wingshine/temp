@@ -32,7 +32,7 @@
 	<select id="queryByUserName" resultType="User">
 		select
 		user_id, password,nick_name, age, email, md5,
-		validated, privilege_lvl, lvl,
+		validated, privilege_lvl, lvl, experience, 
 		head_img, sign_up_time
 		from
 		users
@@ -44,7 +44,7 @@
 		select
 		user_id, user_name, password,nick_name, age,
 		md5, validated, privilege_lvl,
-		lvl, head_img, sign_up_time
+		lvl,  experience, head_img, sign_up_time
 		from
 		users
 		where email = #{email}
@@ -53,7 +53,7 @@
 	<select id="queryById" resultType="User" parameterType="long">
 		select
 		user_name, password,nick_name, age, email, md5, validated,
-		privilege_lvl, lvl,
+		privilege_lvl, lvl, experience, 
 		head_img, sign_up_time
 		from
 		users
@@ -76,6 +76,7 @@
 		#{validated},
 		privilege_lvl = #{privilegeLvl},
 		lvl = #{lvl},
+		experience = #{experience}
 		head_img =
 		#{headImg},
 		sign_up_time = #{signUpTime}
@@ -90,7 +91,7 @@
 		nick_name = #{nickName},
 		age = #{age},
 		head_img
-		= #{headImg},
+		= #{headImg}
 		where user_id = #{userId}
 	</update>
 
@@ -104,7 +105,7 @@
 	<select id="queryAll" resultType="User">
 		select
 		user_name, nick_name,
-		age, email, md5, validated, privilege_lvl, lvl, head_img,
+		age, email, md5, validated, privilege_lvl, lvl, experience, head_img,
 		sign_up_time
 		from
 		users
@@ -118,7 +119,7 @@
 		email =
 		#{email},
 		md5 = #{md5},
-		validated = #{validated},
+		validated = #{validated}
 		where user_id =
 		#{userId}
 	</update>
@@ -127,7 +128,7 @@
 		update
 		user
 		set
-		validated = 1,
+		validated = 1
 		where md5 = #{md5}
 	</update >
 	
@@ -137,5 +138,22 @@
 		set
 		password = #{password}
 		where md5 = #{md5}
+	</update>
+	
+	<update id="addExperience">
+		update
+		user
+		set
+		experience = experience + #{experience}
+		where user_id = #{user_id}
+	</update>
+	
+	<update id="upgrade">
+		update
+		user
+		set
+		lvl = lvl + 1,
+		experience = experience + #{experience} - 100
+		where user_id = #{user_id}
 	</update>
 </mapper> 
