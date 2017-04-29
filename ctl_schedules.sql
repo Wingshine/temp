@@ -26,7 +26,8 @@ CREATE TABLE users(
     values 
       ('admin', '123456', 'admin', 22, 'jssjh2008@163.com', '232323232323', 1, 99, 100, '001.png'),
       ('moonshine', '12345678', 'moonshine', 23, 'jssjh2014@126.com', '232323232343', 1, 1, 50, '002.png');
---创建角色表
+      
+-- 创建角色表
 CREATE TABLE privilege_lvls(
   lvl TINYINT PRIMARY KEY COMMENT '等级',
   role VARCHAR(10) NOT NULL UNIQUE COMMENT '角色'
@@ -39,41 +40,117 @@ insert into
     (50,'高级板块管理员'),
     (99,'超级管理员')
 
---创建称号表
+-- 创建称号表
 CREATE TABLE lvl_names(
   lvl TINYINT PRIMARY KEY COMMENT '等级',
-  name VARCHAR(20) NOT NULL UNIQUE COMMENT '称号'
+  name VARCHAR(20) NOT NULL COMMENT '称号'
 )ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='称号表';
 
 insert into
-  lvl_names(lvl, role)
+  lvl_names(lvl, name)
   values
     (1,'萌新'),
+    (2,'萌新'),
+    (3,'萌新'),
+    (4,'萌新'),
     (5,'初出茅庐'),
+    (6,'初出茅庐'),
+    (7,'初出茅庐'),
+    (8,'初出茅庐'),
+    (9,'初出茅庐'),
     (10, '十里青杨'),
     (11, '十里青杨'),
+    (12, '十里青杨'),
+    (13, '十里青杨'),
+    (14, '十里青杨'),
     (15, '明意征圣'),
+    (16, '明意征圣'),
+    (17, '明意征圣'),
+    (18, '明意征圣'),
+    (19, '明意征圣'),
     (20, '云天望垂'),
+    (21, '云天望垂'),
+    (22, '云天望垂'),
+    (23, '云天望垂'),
+    (24, '云天望垂'),
     (25, '大智若愚'),
+    (26, '大智若愚'),
+    (27, '大智若愚'),
+    (28, '大智若愚'),
+    (29, '大智若愚'),
     (30, '御命丹心'),
+    (31, '御命丹心'),
+    (32, '御命丹心'),
+    (33, '御命丹心'),
+    (34, '御命丹心'),
     (35, '武道七修'),
-    (40, ' 奇花八部'),
+    (36, '武道七修'),
+    (37, '武道七修'),
+    (38, '武道七修'),
+    (39, '武道七修'),
+    (40, '奇花八部'),
+    (41, '奇花八部'),
+    (42, '奇花八部'),
+    (43, '奇花八部'),
+    (44, '奇花八部'),
     (45, '忉利狱龙'),
+    (46, '忉利狱龙'),
+    (47, '忉利狱龙'),
+    (48, '忉利狱龙'),
+    (49, '忉利狱龙'),
     (50, '清香白莲'),
+    (51, '清香白莲'),
+    (52, '清香白莲'),
+    (53, '清香白莲'),
+    (54, '清香白莲'),
     (55, '天可明鉴'),
+    (56, '天可明鉴'),
+    (57, '天可明鉴'),
+    (58, '天可明鉴'),
+    (59, '天可明鉴'),
     (60, '刀狂剑痴'),
+    (61, '刀狂剑痴'),
+    (62, '刀狂剑痴'),
+    (63, '刀狂剑痴'),
+    (64, '刀狂剑痴'),
     (65, '禅剑一如'),
+    (66, '禅剑一如'),
+    (67, '禅剑一如'),
+    (68, '禅剑一如'),
+    (69, '禅剑一如'),
     (70, '奉天逍遥'),
+    (71, '奉天逍遥'),
+    (72, '奉天逍遥'),
+    (73, '奉天逍遥'),
+    (74, '奉天逍遥'),
     (75, '玄黄三乘'),
+    (76, '玄黄三乘'),
+    (77, '玄黄三乘'),
+    (78, '玄黄三乘'),
+    (79, '玄黄三乘'),
     (80, '百世经纶'),
+    (81, '百世经纶'),
+    (82, '百世经纶'),
+    (83, '百世经纶'),
+    (84, '百世经纶'),
     (85, '九天玄尊'),
     (86, '秋名车神'),
+    (87, '秋名车神'),
+    (88, '秋名车神'),
+    (89, '秋名车神'),
     (90, '封号斗罗'),
+    (91, '封号斗罗'),
+    (92, '封号斗罗'),
+    (93, '封号斗罗'),
+    (94, '封号斗罗'),
     (95, '九五至尊'),
+    (96, '九五至尊'),
+    (97, '九五至尊'),
+    (98, '九五至尊'),
     (99, '天地玄黄'),
     (100, '宇宙洪荒')
     
---创建板块表
+-- 创建板块表
 CREATE TABLE blocks(
   block_id SMALLINT AUTO_INCREMENT PRIMARY KEY COMMENT '板块ID',
   block_name VARCHAR(20) NOT NULL UNIQUE COMMENT '板块名',
@@ -86,7 +163,7 @@ insert into
   (''),
   ('')
 
---创建主题贴表
+-- 创建主题贴表
 CREATE TABLE posts(
   post_id INT AUTO_INCREMENT PRIMARY KEY COMMENT '主题帖ID',
   post_title VARCHAR(40) NOT NULL COMMENT '主题帖标题',
@@ -99,7 +176,7 @@ CREATE TABLE posts(
   is_top TINYINT NOT NULL DEFAULT 0 COMMENT '是否置顶'
 )ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='主题帖表';
   
---创建留言表
+-- 创建留言表
 CREATE TABLE comments(
   comment_id BIGINT AUTO_INCREMENT PRIMARY KEY COMMENT '留言ID',
   comment_value VARCHAR(225) NOT NULL COMMENT '留言内容',
@@ -111,19 +188,19 @@ CREATE TABLE comments(
   dislike_count INT NOT NULL DEFAULT 0 COMMENT '讨厌数'
 )ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='留言表';
 
---收藏列表
+-- 收藏列表
 CREATE TABLE starts(
   starter_id BIGINT NOT NULL COMMENT '收藏人ID',
   post_id INT NOT NULL COMMENT '主题帖ID'
 )ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='收藏列表';
 
---关注列表
+-- 关注列表
 CREATE TABLE focuses(
   focuser_id BIGINT NOT NULL COMMENT '关注人ID',
   focused_id BIGINT NOT NULL COMMENT '被关注人ID'
 )ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='关注列表';
 
---举报列表
+-- 举报列表
 CREATE TABLE reports(
   reporter_id BIGINT NOT NULL COMMENT '举报人ID',
   reported_id BIGINT NOT NULL COMMENT '被举报留言ID'
