@@ -22,7 +22,7 @@ CREATE TABLE users(
 )ENGINE=INNODB AUTO_INCREMENT=10000000 DEFAULT CHARSET=utf8 COMMENT='用户表';
 
  insert into 
-      users (user_name, password, nick_name, age, email, md5, validated, privilege_lvl, lvl, head_img, sign_up_time)
+      users (user_name, password, nick_name, age, email, md5, validated, privilege_lvl, lvl, head_img)
     values 
       ('admin', '123456', 'admin', 22, 'jssjh2008@163.com', '232323232323', 1, 99, 100, '001.png'),
       ('moonshine', '12345678', 'moonshine', 23, 'jssjh2014@126.com', '232323232343', 1, 1, 50, '002.png');
